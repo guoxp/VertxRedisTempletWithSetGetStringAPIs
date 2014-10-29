@@ -16,7 +16,7 @@ import org.vertx.java.core.json.JsonObject;
 
 import redis.clients.jedis.Jedis;
 
-public class SetStringAPI extends PingVerticle {
+public class SetStringAPI extends MainVerticle {
 	public SetStringAPI() {
 
 	}

@@ -13,7 +13,7 @@ import org.vertx.java.core.json.JsonObject;
 
 import redis.clients.jedis.Jedis;
 
-public class GetStringAPI extends PingVerticle {
+public class GetStringAPI extends MainVerticle {
 
 	public GetStringAPI() {
 

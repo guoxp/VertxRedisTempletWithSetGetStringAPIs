@@ -32,7 +32,7 @@ import org.vertx.java.platform.Verticle;
 /*
  This is a simple Java verticle which receives `ping` messages on the event bus and sends back `pong` replies
  */
-public class PingVerticle extends Verticle {
+public class MainVerticle extends Verticle {
 	SetStringAPI mUploadBinaryDataAPI;
 	GetStringAPI mDownloadBinaryDatAPI;
 
@@ -45,7 +45,7 @@ public class PingVerticle extends Verticle {
 		// container.logger().info("Sent back pong");
 		// }
 		// });
-		container.deployVerticle(PingVerticle.class.getCanonicalName(), 1);
+		container.deployVerticle(MainVerticle.class.getCanonicalName(), 1);
 		// container.logger().info("PingVerticle started");
 		// vertx.createHttpServer()
 		// .requestHandler(new Handler<HttpServerRequest>() {

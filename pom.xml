@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.yizhao</groupId>
-	<artifactId>Vgit push -u origin master</artifactId>
+	<artifactId>VertxWithRedisWithSetGetStringAPI</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1</version>
 	<name>Project - my-module</name>

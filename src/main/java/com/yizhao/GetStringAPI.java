@@ -24,7 +24,7 @@ public class GetStringAPI extends PingVerticle {
 		Jedis jedis = new Jedis("localhost");
 		JsonObject response = new JsonObject();
 		response.putString("status", "0");
-		response.putString("result", jedis.get("test"));
+		response.putString("result", jedis.get(bridge_between_server_and_client.params().get("key")));
 		bridge_between_server_and_client.response().end(response.encodePrettily());
 		
 	}

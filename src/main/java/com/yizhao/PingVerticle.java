@@ -65,8 +65,8 @@ public class PingVerticle extends Verticle {
 		httpServer.requestHandler(httpRouteMatcher);
 		httpServer.listen(8080, "0.0.0.0");
 
-		// curl -v -X POST http://localhost:8080/setstring
-		httpRouteMatcher.post("/setstring", new Handler<HttpServerRequest>() {
+		// curl -v -X POST http://localhost:8080/setstring/apple/mouse
+		httpRouteMatcher.post("/setstring/:key/:value", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(final HttpServerRequest bridge_between_server_and_client) {
 				mUploadBinaryDataAPI = new SetStringAPI();
@@ -76,8 +76,8 @@ public class PingVerticle extends Verticle {
 			}
 		});
 
-		// curl -v -X GET http://localhost:8080/getstring
-		httpRouteMatcher.get("/getstring", new Handler<HttpServerRequest>() {
+		// curl -v -X GET http://localhost:8080/getstring/apple
+		httpRouteMatcher.get("/getstring/:key", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(final HttpServerRequest bridge_between_server_and_client) {
 				container.logger().info("mDownloadBinaryDatAPI");

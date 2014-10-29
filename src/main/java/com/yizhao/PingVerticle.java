@@ -33,10 +33,10 @@ import org.vertx.java.platform.Verticle;
  This is a simple Java verticle which receives `ping` messages on the event bus and sends back `pong` replies
  */
 public class PingVerticle extends Verticle {
-	UploadBinaryDataAPI mUploadBinaryDataAPI;
-	DownloadBinaryDatAPI mDownloadBinaryDatAPI;
-	
-	private void init(){
+	SetStringAPI mUploadBinaryDataAPI;
+	GetStringAPI mDownloadBinaryDatAPI;
+
+	private void init() {
 		// vertx.eventBus().registerHandler("ping-address",
 		// new Handler<Message<String>>() {
 		// @Override
@@ -55,8 +55,9 @@ public class PingVerticle extends Verticle {
 		// req.response().sendFile("webroot/" + file);
 		// }
 		// }).listen(8080);
-		
+
 	}
+
 	public void start() {
 		init();
 		RouteMatcher httpRouteMatcher = new RouteMatcher();
@@ -64,27 +65,24 @@ public class PingVerticle extends Verticle {
 		httpServer.requestHandler(httpRouteMatcher);
 		httpServer.listen(8080, "0.0.0.0");
 
-		// curl -v -X POST http://localhost:8080/redis -F "file=@3.png" --trace-ascii /dev/stdout
-		httpRouteMatcher.post("/redis", new Handler<HttpServerRequest>() {
+		// curl -v -X POST http://localhost:8080/setstring
+		httpRouteMatcher.post("/setstring", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(final HttpServerRequest bridge_between_server_and_client) {
-				mUploadBinaryDataAPI = new UploadBinaryDataAPI();
-				try {
-					container.logger().info("mUploadBinaryDataAPI");
-					mUploadBinaryDataAPI.upload(vertx, bridge_between_server_and_client);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				mUploadBinaryDataAPI = new SetStringAPI();
+				container.logger().info("mUploadBinaryDataAPI");
+				mUploadBinaryDataAPI.setString(vertx, bridge_between_server_and_client);
+
 			}
 		});
 
-		// curl -v -X GET http://localhost:8080/redis
-		httpRouteMatcher.get("/redis", new Handler<HttpServerRequest>() {
+		// curl -v -X GET http://localhost:8080/getstring
+		httpRouteMatcher.get("/getstring", new Handler<HttpServerRequest>() {
 			@Override
 			public void handle(final HttpServerRequest bridge_between_server_and_client) {
 				container.logger().info("mDownloadBinaryDatAPI");
-				mDownloadBinaryDatAPI = new DownloadBinaryDatAPI();
-				mDownloadBinaryDatAPI.download(vertx, bridge_between_server_and_client);
+				mDownloadBinaryDatAPI = new GetStringAPI();
+				mDownloadBinaryDatAPI.getString(vertx, bridge_between_server_and_client);
 			}
 		});
 

@@ -13,20 +13,18 @@ import org.vertx.java.core.json.JsonObject;
 
 import redis.clients.jedis.Jedis;
 
-public class DownloadBinaryDatAPI extends PingVerticle {
+public class GetStringAPI extends PingVerticle {
 
-	public DownloadBinaryDatAPI() {
+	public GetStringAPI() {
 
 	}
 
-	public void download(final Vertx vertx, final HttpServerRequest bridge_between_server_and_client) {
+	public void getString(final Vertx vertx, final HttpServerRequest bridge_between_server_and_client) {
 		// Connecting to Redis on localhost
 		Jedis jedis = new Jedis("localhost");
-		byte[] key = { 'k' };
-
 		JsonObject response = new JsonObject();
 		response.putString("status", "0");
-		response.putBinary("result", jedis.get(key));
+		response.putString("result", jedis.get("test"));
 		bridge_between_server_and_client.response().end(response.encodePrettily());
 		
 	}

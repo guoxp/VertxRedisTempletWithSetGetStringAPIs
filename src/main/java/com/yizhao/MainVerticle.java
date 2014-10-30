@@ -37,24 +37,7 @@ public class MainVerticle extends Verticle {
 	GetStringAPI mDownloadBinaryDatAPI;
 
 	private void init() {
-		// vertx.eventBus().registerHandler("ping-address",
-		// new Handler<Message<String>>() {
-		// @Override
-		// public void handle(Message<String> message) {
-		// message.reply("pong!");
-		// container.logger().info("Sent back pong");
-		// }
-		// });
-		container.deployVerticle(MainVerticle.class.getCanonicalName(), 1);
-		// container.logger().info("PingVerticle started");
-		// vertx.createHttpServer()
-		// .requestHandler(new Handler<HttpServerRequest>() {
-		// public void handle(HttpServerRequest req) {
-		// String file = req.path().equals("/") ? "index.html"
-		// : req.path();
-		// req.response().sendFile("webroot/" + file);
-		// }
-		// }).listen(8080);
+		
 
 	}
 
